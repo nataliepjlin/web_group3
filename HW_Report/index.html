@@ -1,181 +1,112 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amazon</title>
-
-    <link rel="stylesheet" href="styles/shared/general.css">
-    <link rel="stylesheet" href="styles/shared/amazon-header.css">
-    <link rel="stylesheet" href="styles/pages/amazon.css">
-  </head>
-  <body>
-    <div class="amazon-header">
-      <div class="amazon-header-left-section">
-        <a href="index.html" class="header-link">
-          <img class="amazon-logo"
-            src="images/amazon-logo-white.png">
-          <img class="amazon-mobile-logo"
-            src="images/amazon-mobile-logo-white.png">
-        </a>
-      </div>
-
-      <div class="amazon-header-middle-section">
-        <input class="search-bar" type="text" placeholder="Search">
-
-        <button class="search-button">
-          <img class="search-icon" src="images/icons/search-icon.png">
-        </button>
-      </div>
-    </div>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="amazon-header">
+        <div class="amazon-header-left-section">
+            <a href="index.html" class="header-link">
+                <img class="amazon-logo" src="images/amazon-logo-white.png" alt="Amazon Logo">
+                <img class="amazon-mobile-logo" src="images/amazon-mobile-logo-white.png" alt="Amazon Mobile Logo">
+            </a>
+        </div>
+        <div class="amazon-header-middle-section">
+            <input class="search-bar" type="text" placeholder="Search">
+            <button class="search-button">
+                <img class="search-icon2" src="images/icons/search-icon2.png" alt="Search">
+            </button>
+        </div>
+    </header>
     
-    <div class="main">
-      <div class="products-grid">
-        <div class="product-container">
-          <div class="product-image-container">
-            <img class="product-image"
-              src="images/products/athletic-cotton-socks-6-pairs.jpg">
-          </div>
-
-          <div class="product-name limit-text-to-2-lines">
-            Black and Gray Athletic Cotton Socks - 6 Pairs
-          </div>
-
-          <div class="product-rating-container">
-            <img class="product-rating-stars"
-              src="images/ratings/rating-45.png">
-            <div class="product-rating-count link-primary">
-              87
-            </div>
-          </div>
-
-          <div class="product-price">
-            $10.90
-          </div>
-
-          <div class="product-quantity-container">
-            <select>
-              <option selected value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-
-          <div class="product-spacer"></div>
-
-          <div class="added-to-cart">
-            <img src="images/icons/checkmark.png">
-            Added
-          </div>
-
-          <button class="add-to-cart-button button-primary">
-            Add to Cart
-          </button>
+    <main class="main">
+        <div class="products-grid" id="products-grid">
+            <!-- Product Template -->
+            <template id="product-template">
+                <div class="product-container">
+                    <div class="product-image-container">
+                        <img class="product-image" src="" alt="Product Image">
+                    </div>
+                    <div class="product-name limit-text-to-2-lines"></div>
+                    <div class="product-rating-container">
+                        <img class="product-rating-stars" src="" alt="Rating">
+                        <div class="product-rating-count link-primary"></div>
+                    </div>
+                    <div class="product-price"></div>
+                    <div class="product-quantity-container">
+                        <label for="quantity">Quantity:</label>
+                        <select id="quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="product-spacer"></div>
+                    <div class="added-to-cart">
+                        
+                        <img src="images/icons/checkmark.png" alt="Checkmark" style="width: 20px; height: 20px;">
+                        Added
+                    </div>
+                    <button class="add-to-cart-button button-primary">Add to Cart</button>
+                </div>
+            </template>
         </div>
+    </main>
 
-        <div class="product-container">
-          <div class="product-image-container">
-            <img class="product-image"
-              src="images/products/intermediate-composite-basketball.jpg">
-          </div>
+    <script>
+        // Example data for products
+        const products = [
+            {
+                image: "images/products/athletic-cotton-socks-6-pairs.jpeg",
+                name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
+                ratingImage: "images/ratings/rating-45.png",
+                ratingCount: 87,
+                price: "$10.90"
+            },
+            {
+                image: "images/products/intermediate-composite-basketball.jpeg",
+                name: "Intermediate Size Basketball",
+                ratingImage: "images/ratings/rating-40.png",
+                ratingCount: 127,
+                price: "$20.95"
+            },
+            {
+                image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpeg",
+                name: "Adults Plain Cotton T-Shirt - 2 Pack",
+                ratingImage: "images/ratings/rating-45.png",
+                ratingCount: 56,
+                price: "$7.99"
+            }
+        ];
 
-          <div class="product-name limit-text-to-2-lines">
-            Intermediate Size Basketball
-          </div>
+        const productsGrid = document.getElementById('products-grid');
+        const productTemplate = document.getElementById('product-template');
 
-          <div class="product-rating-container">
-            <img class="product-rating-stars"
-              src="images/ratings/rating-40.png">
-            <div class="product-rating-count link-primary">
-              127
-            </div>
-          </div>
+        // Insert products dynamically
+        products.forEach(product => {
+            const productClone = productTemplate.content.cloneNode(true);
+            const productContainer = productClone.querySelector('.product-container');
 
-          <div class="product-price">
-            $20.95
-          </div>
+            // Set product details
+            productContainer.querySelector('.product-image').src = product.image;
+            productContainer.querySelector('.product-name').textContent = product.name;
+            productContainer.querySelector('.product-rating-stars').src = product.ratingImage;
+            productContainer.querySelector('.product-rating-count').textContent = product.ratingCount;
+            productContainer.querySelector('.product-price').textContent = product.price;
 
-          <div class="product-quantity-container">
-            <select>
-              <option selected value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-
-          <div class="product-spacer"></div>
-
-          <div class="added-to-cart">
-            <img src="images/icons/checkmark.png">
-            Added
-          </div>
-
-          <button class="add-to-cart-button button-primary">
-            Add to Cart
-          </button>
-        </div>
-
-        <div class="product-container">
-          <div class="product-image-container">
-            <img class="product-image"
-              src="images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg">
-          </div>
-
-          <div class="product-name limit-text-to-2-lines">
-            Adults Plain Cotton T-Shirt - 2 Pack
-          </div>
-
-          <div class="product-rating-container">
-            <img class="product-rating-stars"
-              src="images/ratings/rating-45.png">
-            <div class="product-rating-count link-primary">
-              56
-            </div>
-          </div>
-
-          <div class="product-price">
-            $7.99
-          </div>
-
-          <div class="product-quantity-container">
-            <select>
-              <option selected value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-
-          <div class="product-spacer"></div>
-
-          <div class="added-to-cart">
-            <img src="images/icons/checkmark.png">
-            Added
-          </div>
-
-          <button class="add-to-cart-button button-primary">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-  </body>
+            // Append the cloned product to the grid
+            productsGrid.appendChild(productClone);
+        });
+    </script>
+</body>
 </html>
