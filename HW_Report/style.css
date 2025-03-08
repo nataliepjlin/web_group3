@@ -42,6 +42,6 @@ body {
 .search-icon2 {
     width: 20px;  /* Set your desired width */
     height: 20px; /* Set your desired height */
+    transform: scale(0.5); /* 讓圖片縮小 50% */
     object-fit: contain; /* Ensures the image keeps its aspect ratio */
 }
-
